@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="style.css">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candy Store</title>
+
+</head>
+
+<body>
+  <header>
+    <h1>Candy Store</h1>
+  </header>
+
+  <div class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+      <div class="nav-title">
+        Candy Store
+      </div>
+    </div>
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+    
+    <div class="nav-links">
+      <a href="https://github.com/abdelrahmanelshreif" target="_blank">Github</a>
+      <a href="https://www.linkedin.com/in/abdelrahman-mohamed-0781a3217/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search For Your Candy..." />
+    <button onclick="searchProducts()">Search</button>
+  </div>
+
+  <div class="slider-container">
+    <div class="slider">
+      <div class="product">
+        <img src="Maltesers.png" alt="Product 1" />
+        <h3>Maltesers</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Maltesers.png" alt="Product 1" />
+        <h3>Maltesers</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Maltesers.png" alt="Product 1" />
+        <h3>Maltesers</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Maltesers.png" alt="Product 1" />
+        <h3>Maltesers</h3>
+        <p>$5.99</p>
+      </div>
+    </div>
+
+
+
+    <div class="slider">
+      <div class="product">
+        <img src="Kitkat.png" alt="Product 1" />
+        <h3>Kitkat</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Kitkat.png" alt="Product 1" />
+        <h3>Kitkat</h3>
+        <p>$5.99</p>
+      </div>
+      
+      <div class="product">
+        <img src="Kitkat.png" alt="Product 1" />
+        <h3>Kitkat</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Kitkat.png" alt="Product 1" />
+        <h3>Kitkat</h3>
+        <p>$5.99</p>
+      </div>
+    </div>
+
+    <div class="slider">
+      <div class="product">
+        <img src="Oreo.png" alt="Product 1" />
+        <h3>Oreo</h3>
+        <p>$5.99</p>
+      </div>
+      
+      <div class="product">
+        <img src="Oreo.png" alt="Product 1" />
+        <h3>Oreo</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Oreo.png" alt="Product 1" />
+        <h3>Oreo</h3>
+        <p>$5.99</p>
+      </div>
+
+      <div class="product">
+        <img src="Oreo.png" alt="Product 1" />
+        <h3>Kitkat</h3>
+        <p>$5.99</p>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="footer">
+    <div class="social-icons">
+      <a href="https://www.facebook.com/abdelrahman2y"><img src="facebook.png" alt="Facebook" /></a>
+      <a href="https://www.instagram.com/abdelrahmanelshreif/"><img src="instagram.png" alt="Instagram" /></a>
+    </div>
+    <p>&copy; 2024 Candy Store. All rights reserved.</p>
+  </div>
+
+  <script>
+    function displayProducts(searchTerm) {
+        const sliders = document.querySelectorAll('.slider');
+        const products = [];
+
+        sliders.forEach(slider => {
+            const productsInSlider = slider.querySelectorAll('.product');
+
+            productsInSlider.forEach(productElement => {
+                const product = {
+                    name: productElement.querySelector('h3').textContent,
+                    price: productElement.querySelector('p').textContent
+                };
+
+                products.push(product);
+            });
+        });
+
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.innerHTML = '';
+
+        filteredProducts.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('product');
+
+            productDiv.innerHTML = `
+                <img src="${product.name}.png" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.price}</p>
+            `;
+
+            sliderContainer.appendChild(productDiv);
+        });
+
+        if (filteredProducts.length === 0) {
+            alert('No products found with that name.');
+        }
+    }
+
+    function searchProducts() {
+        const searchInput = document.getElementById('searchInput');
+        const searchTerm = searchInput.value.trim();
+
+        if (searchTerm !== '') {
+            displayProducts(searchTerm);
+        } else {
+            alert('Please Enter Candy Name....');
+        }
+    }
+</script>
+</body>
+
+</html>
